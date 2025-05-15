@@ -7,7 +7,10 @@ variable "location" {
   description = "Azure region where resources will be created"
   type        = string
 }
-
+variable "subscription_id" {
+  description = "value of subscription id"
+  type        = string
+}
 variable "adf_name" {
   description = "Name of the Azure Data Factory"
   type        = string

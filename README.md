@@ -2,10 +2,6 @@
 
 This Terraform project deploys an Azure Data Factory (ADF) solution with two virtual networks, each containing a private storage account with private endpoints. The ADF is configured to copy data between the two storage accounts.
 
-## Architecture
-
-![Architecture Diagram](https://mermaid.ink/img/pako:eNqFkk1PwzAMhv9KlBMgdYceuExiQkgcEBJcOKDSNXFXa01SJemAqfrfcbquHYh9Sew3jh_bJ1RWE2aoQFvnXvYGnYcP0Gg9vGpwDg2-oXbwjNZb0BZWcABrULtPWMEeHFrQDnRNDWwxwBZqZ9GhgT3UzjXgLVXQGNQOvYfGOQdvYFBDZbFGD5VzDXhHFVTGNOgDVNY26D1VUFpToQ9QGlOjD1RCYbBC76EwukYfqYTcmhK9h9zoEn2iEnJrC_QOcmNK9JlKyKzJ0TvIjCnQFyohNTpD7yA1OkdfqYRE6xS9g0TrDH2jEhKjEvQOEq0S9J1KiLWK0TuItYrRDyohMipC7yAyKkI_qITQqBC9g9CoEP2kEgKjAvQOAqMC9ItK8I3y0TvwjfLRbyohUMpD7yBQykO_qQRPKRe9A08pF_2hEnylHPQOXKUc9JdKcJSy0TtwlLLRPyrhH2XoHdhK2egflTBTyk7QO5gplaBfVMJEKStG72CiVIx-UwljpawIvYOxUhH6QyWMlAoD9A5GSgXoL5UwVMoP0TsYKuWjf1TCQCk3Qu9goFSE_lEJfaWcGL2DvlIx-k8l9JRyEvQOeko56JFKmCvlpOgdzJVy0f8BXnkm3w?type=png)
-
 ## Components
 
 1. **Azure Data Factory (ADF)**
@@ -85,7 +81,7 @@ After deployment:
 To remove all resources:
 
 ```
-terraform destroy
+terraform destroy --auto-approve
 ```
 
 ## Contributing
