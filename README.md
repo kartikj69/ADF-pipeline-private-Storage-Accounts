@@ -32,16 +32,25 @@ This Terraform project deploys an Azure Data Factory (ADF) solution with two vir
 
 1. Clone this repository
 2. Navigate to the `ADF/Workload` directory
-3. Update the `terraform.tfvars` file if needed
-4. Initialize Terraform:
+3. **IMPORTANT**: Log in to Azure using the Azure CLI:
+   ```
+   az login
+   ```
+4. **REQUIRED**: Update the `terraform.tfvars` file with your own subscription ID and tenant ID:
+   ```
+   # Example terraform.tfvars content
+   subscription_id = "your-subscription-id"
+   tenant_id       = "your-tenant-id"
+   ```
+5. Initialize Terraform:
    ```
    terraform init
    ```
-5. Create an execution plan:
+6. Create an execution plan:
    ```
    terraform plan -out=tfplan
    ```
-6. Apply the plan:
+7. Apply the plan:
    ```
    terraform apply tfplan
    ```
@@ -105,6 +114,8 @@ This project is configured for GitHub with:
 
 ## Notes
 
+- **IMPORTANT**: You must update the `terraform.tfvars` file with your own subscription ID and tenant ID before deployment.
 - Storage account names must be globally unique. You may need to modify them in `terraform.tfvars`.
 - The deployment creates a sample file in the source storage account for demonstration purposes.
 - For production use, consider enhancing security by using managed identities for ADF linked services instead of storage keys.
+- If you encounter authentication issues, ensure you're properly logged in with `az login` and that your account has the necessary permissions.
