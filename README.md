@@ -66,6 +66,32 @@ After deployment:
 5. Click "Debug" to run the pipeline
 6. Verify that the file has been copied to the destination storage account
 
+## Post-Deployment Security Configuration
+
+### Disabling Public Network Access
+
+For enhanced security in production environments, you should disable public network access to your storage accounts:
+
+1. **IMPORTANT**: Before disabling public access, be aware of the following:
+   - Once public access is disabled, Terraform will encounter container errors when trying to manage the infrastructure
+   - You will need a VM within the VNet to access and manage the resources
+
+2. **Recommended Approach**:
+   - Deploy a management VM in the destination VNet (vnet1) before disabling public access
+   - Copy the Terraform state file (terraform.tfstate) to this VM
+   - Perform all subsequent Terraform operations from this VM
+
+3. **Disabling Public Access**:
+   - Option 1: Manually disable public access through the Azure Portal
+     - Navigate to each storage account
+     - Go to "Networking" → "Public network access"
+     - Select "Disabled"
+
+   - Option 2: Programmatically disable public access (do this from the management VM)
+     ```
+     az storage account update --name <storage-account-name> --resource-group <resource-group-name> --public-network-access Disabled
+     ```
+
 ## Best Practices Implemented
 
 - **Security**:
@@ -117,5 +143,6 @@ This project is configured for GitHub with:
 - **IMPORTANT**: You must update the `terraform.tfvars` file with your own subscription ID and tenant ID before deployment.
 - Storage account names must be globally unique. You may need to modify them in `terraform.tfvars`.
 - The deployment creates a sample file in the source storage account for demonstration purposes.
+- **CRITICAL**: For production environments, disable public network access to storage accounts as described in the "Post-Deployment Security Configuration" section. Remember to set up a management VM in the VNet first and copy the terraform.tfstate file to it.
 - For production use, consider enhancing security by using managed identities for ADF linked services instead of storage keys.
 - If you encounter authentication issues, ensure you're properly logged in with `az login` and that your account has the necessary permissions.
